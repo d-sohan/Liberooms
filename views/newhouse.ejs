@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userHeader %> <%= renterPtr.fname %>&apos;s Dashboard: House Registration</title>
+</head>
+
+<body>
+    <h1>Liberooms</h1>
+    <h2><%= userHeader %> <%= renterPtr.fname %>&apos;s <a href="/renter/user/<%= renterPtr.username %>/">Dashboard</a></h2>
+    <h3>Register your house</h3>
+    <div>
+        <form action="/renter/user/<%= renterPtr.username %>/houses/create" method="post">
+            <div>
+                <label for="housenumber">House Number:</label>
+                <input type="number" name="housenumber" id="housenumber" placeholder="E.g. 33" required>
+            </div>
+            <div>
+                <label for="street">Street:</label>
+                <input type="text" name="street" id="street" placeholder="E.g. LL road" required>
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" name="city" id="city" placeholder="E.g. Hyderabad" required>
+            </div>
+            <div>
+                <label for="pincode">Pincode:</label>
+                <input type="number" name="pincode" id="pincode" placeholder="E.g. 500078" required>
+            </div>
+            <div>
+                <label for="state">State:</label>
+                <input type="text" name="state" id="state" placeholder="E.g. Telangana" required>
+            </div>
+            <div>
+                <label for="country">Country:</label>
+                <input type="text" name="country" id="country" placeholder="E.g. India" required>
+            </div>
+            <input type="submit" name="submit" id="submit" value="Register House">
+        </form>
+    </div>
+    <% if (dialog.msg !== "") { %>
+    <% if (dialog.hasFailed === true) { %>
+    <p style="color: red;">House Registration failed: <%= dialog.msg %></p>
+    <% } else {  %>
+    <p style="color: green;"><%= dialog.msg %></p>
+    <% } %>
+    <% } %>
+
+
+</body>
+
+</html>

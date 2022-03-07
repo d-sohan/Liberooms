@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liberooms <%= userHeader %> Log in</title>
+</head>
+
+<body>
+    <h1><a href="/">Liberooms</a></h1>
+    <h2><a href="/<%= userType %>"><%= userHeader %></a> Log in</h2>
+    <div>
+        <form action="/<%= userType %>/login" method="post">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter password" required>
+            </div>
+            <input type="submit" name="submit" id="submit" value="Log in">
+        </form>
+        <% if (dialog.msg !== "") { %>
+        <% if (dialog.hasFailed === true) { %>
+        <p style="color: red;">Log in failed: <%= dialog.msg %></p>
+        <% } else {  %>
+        <p style="color: green;"><%= dialog.msg %></p>
+        <% } %>
+        <% } %>
+    </div>
+    <div>
+        <a href="/<%= userType %>/forgot">Forgot credentials</a>
+    </div>
+</body>
+
+</html>

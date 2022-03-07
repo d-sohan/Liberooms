@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userHeader %> <%= tenantPtr.fname %>&apos;s Dashboard</title>
+</head>
+
+<body>
+    <h1>Liberooms</h1>
+    <h2><%= userHeader %> <%= tenantPtr.fname %>&apos;s <a href="/tenant/user/<%= tenantPtr.username %>/">Dashboard</a>
+    </h2>
+    <h3>Search for Houses</h3>
+
+    <div>
+        <form action="/tenant/user/<%= tenantPtr.username %>/search" method="post">
+            <label for="search">Search by city:</label>
+            <input type="search" name="search" id="search">
+            <input type="submit" name="submit" id="submit" value="Go">
+        </form>
+    </div>
+    <div>
+        <% if (showResults === true) { %>
+        <p>
+            Found <%= results.length %> houses :
+        </p>
+        <hr>
+        <% for (let i = 0; i < results.length; ++i) { %>
+        <div>
+            <form action="/tenant/user/<%= tenantPtr.username %>/applications/create" method="post">
+                <span>
+                    <div>House number: <%= results[i].houseNumber %></div>
+                    <div>Street: <%= results[i].street %></div>
+                    <div>City: <%= results[i].city %></div>
+                    <div>Pincode: <%= results[i].pin %></div>
+                    <div>State: <%= results[i].state %></div>
+                    <div>Country: <%= results[i].country %></div>
+                    <div>Owner's email: <%= results[i].ownerEmail %></div>
+                </span>
+                <input type="submit" name="submit" id="submit" value="Apply" disabled>
+            </form>
+        </div>
+        <hr>
+        <% } %>
+        <% } %>
+    </div>
+    <% if (dialog.msg !== "") { %>
+    <% if (dialog.hasFailed === true) { %>
+    <p style="color: red;">Failed: <%= dialog.msg %></p>
+    <% } else {  %>
+    <p style="color: green;"><%= dialog.msg %></p>
+    <% } %>
+    <% } %>
+
+
+
+</body>
+
+</html>

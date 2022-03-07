@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userHeader %> <%= renterPtr.fname %>&apos;s Dashboard: House Management</title>
+</head>
+
+<body>
+    <h1>Liberooms</h1>
+    <h2><%= userHeader %> <%= renterPtr.fname %>&apos;s <a href="/renter/user/<%= renterPtr.username %>/">Dashboard</a>
+    </h2>
+    <h3>Manage your houses</h3>
+    <div>
+        <form action="/renter/user/<%= renterPtr.username %>/houses/manage" method="post">
+            <select name="house" id="houseid">
+                <% for (let i = 0; i < ownerHouses.length; ++i) { %>
+                <option value="<%= i %> "><%= ownerHouses[i].houseNumber+", "+ownerHouses[i].city %>
+                </option>
+                <% } %>
+            </select>
+            <input type="submit" name="submit" id="submit" value="View">
+            <!-- <input type="submit" name="submit" id="submit" value="Edit"> -->
+        </form>
+    </div>
+    <div style="color: purple;">
+        <% if (viewHouses === true) { %>
+        <div><span style="color: black;">House number</span>: <%= chosenHouse.houseNumber %> </div>
+        <div><span style="color: black;">Street:</span> <%= chosenHouse.street %></div>
+        <div><span style="color: black;">City:</span> <%= chosenHouse.city %></div>
+        <div><span style="color: black;">Pincode:</span> <%= chosenHouse.pin %></div>
+        <div><span style="color: black;">State:</span> <%= chosenHouse.state %></div>
+        <div><span style="color: black;">Country:</span> <%= chosenHouse.country %></div>
+        <div><span style="color: black;">Owner's email:</span> <%= chosenHouse.ownerEmail %></div>
+        <div><span style="color: black;">Occupant's email:</span> <%= chosenHouse.occupantEmail %></div>
+        <% } %>
+    </div>
+    <div>
+        <% if (dialog.msg !== "") { %>
+        <% if (dialog.hasFailed === true) { %>
+        <p style="color: red;">House Registration failed: <%= dialog.msg %></p>
+        <% } else {  %>
+        <p style="color: green;"><%= dialog.msg %></p>
+        <% } %>
+        <% } %>
+    </div>
+</body>
+
+</html>

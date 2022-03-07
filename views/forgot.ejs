@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credentials</title>
+</head>
+
+<body>
+    <h1><a href="/">Liberooms</a></h1>
+    <h2><a href="/<%= userType %>"><%= userHeader %></a> Forgot Credentials</h2>
+    <form action="/<%= userType %>/forgot" method="post">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Enter your email" required>
+        </div>
+        <input type="submit" name="submit" id="submit" value="Verify">
+    </form>
+   <% if (dialog.msg !== "") { %>
+   <% if (dialog.hasFailed === true) { %>
+   <p style="color: red;">Failed: <%= dialog.msg %></p>
+   <% } else {  %>
+   <p style="color: green;"><%= dialog.msg %></p>
+   <% } %>
+   <% } %>
+</body>
+
+</html>

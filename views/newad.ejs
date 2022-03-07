@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userHeader %> <%= renterPtr.fname %>&apos;s Dashboard: Create New Ad</title>
+</head>
+
+<body>
+    <h1>Liberooms</h1>
+    <h2><%= userHeader %> <%= renterPtr.fname %>&apos;s <a href="/renter/user/<%= renterPtr.username %>/">Dashboard</a>
+    </h2>
+    <h3>Creat an Ad</h3>
+    <div>
+        <form action="/renter/user/<%= renterPtr.username %>/ads/create" method="post">
+            <div>
+                <label for="house">Select your house</label>
+                <select name="house" id="house">
+                    <% for (let i = 0; i < ownerHouses.length; ++i) { %>
+                    <option value="<%= i %> "><%= ownerHouses[i].houseNumber+", "+ownerHouses[i].city %>
+                    </option>
+                    <% } %>
+                </select>
+            </div>
+            <div>
+                <label for="rent">Monthly Rent Amount:</label>
+                <input type="number" name="rent" id="rent" placeholder="Rent amount in Rupees">
+            </div>
+            <div>
+                <label for="availability">Availability</label>
+                <select name="availability" id="availability">
+                    <option value="Immediately" selected></option>
+                    <option value="Within a week"></option>
+                    <option value="Within a month"></option>
+                </select>
+            </div>
+            <div>
+                <label for="tenantPreference">Tenant Preference</label>
+                <select name="tenantPreference" id="tenantPreference">
+                    <option value="Bachelor"></option>
+                    <option value="Family"></option>
+                    <option value="Indifferent" selected></option>
+                </select>
+            </div>
+            <div>
+                <p>Type of House:</p>
+                <input type="radio" name="type" id="flat" value="Flat">
+                <label for="flat">Flat</label>
+                <input type="radio" name="type" id="villa" value="Villa">
+                <label for="villa">Flat</label>
+            </div>
+            <div>
+                <label for="size">Size of House:</label>
+                <select name="size" id="size">
+                    <option value="Studio"></option>
+                    <option value="N/A"></option>
+                    <option value="1 BHK" selected></option>
+                    <option value="2 BHK"></option>
+                    <option value="3 BHK"></option>
+                    <option value="3+ BHK"></option>
+                </select>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <input type="submit" name="submit" id="submit" value="Register House">
+        </form>
+    </div>
+    <% if (dialog.msg !== "") { %>
+    <% if (dialog.hasFailed === true) { %>
+    <p style="color: red;">House Registration failed: <%= dialog.msg %></p>
+    <% } else {  %>
+    <p style="color: green;"><%= dialog.msg %></p>
+    <% } %>
+    <% } %>
+
+
+</body>
+
+</html>

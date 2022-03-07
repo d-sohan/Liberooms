@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userHeader %> <%= tenantPtr.fname %>&apos;s Dashboard</title>
+</head>
+
+<body>
+    <h1>Liberooms</h1>
+    <h2><%= userHeader %> <%= tenantPtr.fname %>&apos;s Dashboard</h2>
+    <div>
+        <a href="/tenant/user/<%= tenantPtr.username %>/search">Search for houses</a>
+    </div>
+    <!-- <div>
+        <a href="/tenant/user/<%= tenantPtr.username %>/houses/manage">Manage your houses</a>
+    </div>
+    <div>
+        <a href="/tenant/user/<%= tenantPtr.username %>/applications">Manage your Applications</a>
+    </div>
+    <div>
+        <a href="/tenant/user/<%= tenantPtr.username %>/documents">Manage your Documents</a>
+    </div> -->
+    <div>
+        <h3>Your profile</h3>
+        <div>First Name: <%= tenantPtr.fname %></div>
+        <div>Last Name: <%= tenantPtr.lname %></div>
+        <div>Email: <%= tenantPtr.email %></div>
+        <div>Username: <%= tenantPtr.username %></div>
+    </div>
+    <% if (dialog.msg !== "") { %>
+    <% if (dialog.hasFailed === true) { %>
+    <p style="color: red;">Failed: <%= dialog.msg %></p>
+    <% } else {  %>
+    <p style="color: green;"><%= dialog.msg %></p>
+    <% } %>
+    <% } %>
+
+
+
+    <form action="/tenant/logout/<%= tenantPtr.username %>" method="post">
+        <input type="submit" value="Log out">
+    </form>
+</body>
+
+</html>
